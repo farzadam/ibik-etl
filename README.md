@@ -87,6 +87,9 @@ This will return the first 5 rows of the cleaned and transformed dataset loaded 
 ├── Dockerfile              # Python image for ETL
 ├── docker-compose.yml      # Brings up ETL + PostgreSQL together
 ├── logging_config.py       # Logger configuration
+├── eda.md                  # An analysis of the dataset
+├── README.md
+├── requirements.txt
 └── config_schema.py        # Config file schema
 ```
 
