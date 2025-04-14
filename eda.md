@@ -39,13 +39,12 @@ This document summarizes the EDA conducted on the UCI Heart Disease dataset, foc
 - Older patients generally show higher heart disease severity.
 
 ### Sex
-![Sex](image/eda_sex_vs_num.png)  
+![Sex](image/eda_sex_vs_num_normalized.png)  
 - Males (`sex=1`) more represented in higher severity stages.
 
 ### Chest Pain Type (`cp`)
-![CP](image/eda_cp_vs_num_normalized_by_num.png)  
+![CP](image/eda_cp_vs_num_normalized.png)  
 - `cp=4` (asymptomatic) is most common among patients with disease.
-- `cp=1` (typical angina) mostly among `num=0`.
 
 ### Resting Blood Pressure (`trestbps`)
 ![Trestbps](image/eda_trestbps_vs_num.png)  
@@ -56,11 +55,11 @@ This document summarizes the EDA conducted on the UCI Heart Disease dataset, foc
 - High variance across all stages; not a clear indicator.
 
 ### Fasting Blood Sugar (`fbs`)
-![FBS](image/eda_fbs_vs_num.png)  
+![FBS](image/eda_fbs_vs_num_normalized.png)  
 - Mostly `fbs=0`. No meaningful variation in fasting blood sugar across disease stages, indicating limited predictive value.
 
 ### Resting ECG (`restecg`)
-![RestECG](image/eda_restecg_vs_num.png)  
+![RestECG](image/eda_restecg_vs_num_normalized.png)  
 -  `restecg=1` becomes more common as heart disease severity increases. `restecg=2` does not show a clear trend.
 
 ### Max Heart Rate Achieved (`thalach`)
@@ -68,7 +67,7 @@ This document summarizes the EDA conducted on the UCI Heart Disease dataset, foc
 - Inversely correlated with disease severity.
 
 ### Exercise-Induced Angina (`exang`)
-![Exang](image/eda_exang_vs_num.png)  
+![Exang](image/eda_exang_vs_num_normalized.png)  
 - Strong association: `exang=1` (yes) more common with `num > 0`.
 
 ### ST Depression (`oldpeak`)
@@ -76,15 +75,15 @@ This document summarizes the EDA conducted on the UCI Heart Disease dataset, foc
 - Clear upward trend with disease severity.
 
 ### Slope of ST Segment (`slope`)
-![Slope](image/eda_slope_vs_num.png)  
+![Slope](image/eda_slope_vs_num_normalized.png)  
 - Flat (`2`) and downsloping (`3`) more frequent in disease.
 
 ### Number of Vessels Colored (`ca`)
-![CA](image/eda_ca_vs_num.png)  
+![CA](image/eda_ca_vs_num_normalized.png)  
 - Strongly correlated with disease. Higher `ca` values associated with higher `num`.
 
 ### Thalassemia (`thal`)
-![Thal](image/eda_thal_vs_num.png)  
+![Thal](image/eda_thal_vs_num_normalized.png)  
 - Fixed (6) and reversible (7) defects more frequent with disease.
 
 ---
