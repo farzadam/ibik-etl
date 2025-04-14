@@ -84,8 +84,11 @@ def transform_data(df: pd.DataFrame, transform_cfg: Dict) -> pd.DataFrame:
 
     # 3. type validation
     if transform_cfg.get("validate_types", True):
-        schema.validate(df_clean)
-        logger.info(f"types validated.")
-
+        try:
+            schema.validate(df_clean)
+            logger.info(f"types validated.")
+        except pa.errors.SchemaError as exc:
+            logger.error(f"schema validation failed: {exc}")
+            raise
 
     return df_clean

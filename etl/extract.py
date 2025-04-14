@@ -1,7 +1,7 @@
 import pandas as pd
 import logging
 import os
-from ucimlrepo import fetch_ucirepo
+from ucimlrepo import fetch_ucirepo, DatasetNotFoundError
 from typing import Dict
 
 logger = logging.getLogger(__name__)
@@ -21,7 +21,11 @@ def extract_data(data_config: Dict[str, str]) -> pd.DataFrame:
     os.makedirs(destination_folder, exist_ok=True)
 
     logger.info("fetching Heart Disease Dataset from UCI repo...")
-    heart_disease = fetch_ucirepo(id=45)
+    try:
+        heart_disease = fetch_ucirepo(id=45)
+    except DatasetNotFoundError as e:
+        logger.error(f"failed to fetch dataset {e}")
+        raise
 
     # combine features and target into one df
     df = pd.concat([heart_disease.data.features, heart_disease.data.targets], axis=1)
