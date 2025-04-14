@@ -1,0 +1,9 @@
+pandas
+pandera
+sqlalchemy
+psycopg2-binary
+loguru
+pyyaml
+scikit-learn
+seaborn
+ucimlrepo
