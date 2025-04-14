@@ -1,0 +1,36 @@
+data:
+  raw_data_dir: data/raw
+  dataset_source: ucimlrepo/heart-disease
+
+transform:
+  handle_missing:
+    strategies:
+      median:
+        - ca
+      most_frequent:
+        - thal
+      # mean:
+      #   - chol
+      # knn_impute:
+      #   - thalach
+
+  remove_duplicates: true
+  validate_types: true
+
+### in docker mode
+load:
+  host: db
+  port: 5432
+  dbname: etldb
+  user: etluser
+  password: etlpass
+  db_table: heart_disease
+
+# ### local
+# load:
+#   host: localhost
+#   port: 5432
+#   dbname: etldb
+#   user: etluser
+#   password: etlpass
+#   db_table: heart_disease
