@@ -36,6 +36,11 @@ This project implements a complete **ETL (Extract–Transform–Load)** pipeline
    - Loaded into PostgreSQL (`etldb`, table `heart_disease`)
 
 ---
+To verify the healthcheck you can run:
+   ```bash
+   docker-compose ps
+   ```
+
 
 ## Accessing PostgreSQL in Docker
 
@@ -76,20 +81,32 @@ This will return the first 5 rows of the cleaned and transformed dataset loaded 
 │   ├── extract.py          # Downloads data
 │   ├── transform.py        # Cleans, imputes, and processes the data
 │   ├── load.py             # Uploads data to PostgreSQL
-│   └── utils.py            
+│   ├── utils.py
+│   └── schema.py           # Dataset Schema         
 ├── main.py                 
 ├── Dockerfile              # Python image for ETL
 ├── docker-compose.yml      # Brings up ETL + PostgreSQL together
+├── logging_config.py       # Logger configuration
+└── config_schema.py        # Config file schema
 ```
 
 ---
 
 ## Design Decisions
 
-- **Modularized ETL**: Each step is isolated and testable.
-- **Flexible Imputation**: Config allows per-column strategies and indicators.
-- **Type Safety & Logging**: Code is type-annotated and logs meaningful stats.
-- **Dockerized Workflow**: Ensures reproducibility and platform independence.
+**Modularized ETL**: Each pipeline step (extract, transform, load) is modular, self-contained, and testable in isolation.
+
+**Config-Driven Imputation**: Missing value handling is configurable via YAML, supporting multiple strategies (e.g., median, most_frequent, knn) on a per-column basis.
+
+**Schema Validation**: Uses `pandera` to enforce data schema and ensure type correctness before loading.
+
+**Robust Logging**: Centralized and structured logging reports progress, validation results, and errors with contextual detail.
+
+**Dockerized Workflow**: The pipeline runs inside Docker for platform independence and reproducibility.
+
+**Health-Checked PostgreSQL**: Docker Compose uses a proper `pg_isready` health check to delay ETL startup until the database is ready.
+
+**Command-Line Config Override**: Pipeline supports --config CLI argument to flexibly swap configuration files.
 
 ---
 
