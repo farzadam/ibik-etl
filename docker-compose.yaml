@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14
+    container_name: etl-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: etldb
+      POSTGRES_USER: etluser
+      POSTGRES_PASSWORD: etlpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  etl:
+    build: .
+    depends_on:
+      - db
+    environment:
+      PYTHONUNBUFFERED: 1
+
+volumes:
+  pgdata:
