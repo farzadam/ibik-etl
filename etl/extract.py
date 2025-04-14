@@ -5,7 +5,6 @@ from ucimlrepo import fetch_ucirepo, DatasetNotFoundError
 from typing import Dict
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 def extract_data(data_config: Dict[str, str]) -> pd.DataFrame:
     """

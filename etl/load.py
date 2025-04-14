@@ -5,7 +5,6 @@ import logging
 from typing import Dict
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 def load_data(df: pd.DataFrame, load_config: Dict[str, str]) -> None:
     """
@@ -23,7 +22,7 @@ def load_data(df: pd.DataFrame, load_config: Dict[str, str]) -> None:
         port=load_config['port'],
         database=load_config['dbname'] ,
         )
-
+    logger.info(db_url)
     try:
         engine = create_engine(db_url)
         df.to_sql(load_config["db_table"], engine, if_exists="replace", index=True)
