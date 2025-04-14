@@ -7,3 +7,4 @@ pyyaml
 scikit-learn
 seaborn
 ucimlrepo
+pydantic
