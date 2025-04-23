@@ -1,14 +1,14 @@
 from pydantic import BaseModel
 from typing import List, Optional, Dict
 
-class HandleMissing(BaseModel):
+class StrategiesConfig(BaseModel):
     median: Optional[List[str]] = []
     most_frequent: Optional[List[str]] = []
     mean: Optional[List[str]] = []
     knn: Optional[List[str]] = []
 
 class HandleMissing(BaseModel):
-    strategies: Dict[str, List[str]] = {}
+    strategies: Optional[StrategiesConfig] = StrategiesConfig()
 
 class TransformConfig(BaseModel):
     handle_missing: Optional[HandleMissing] = HandleMissing()
